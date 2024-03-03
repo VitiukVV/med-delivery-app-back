@@ -2,8 +2,12 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 const { PharmacyDrugs } = require("../models/pharmacyDrugs");
 
 const getMedicineByPharmacy = async (req, res) => {
-    const { pharmacyName } = req.body;
-    const result = await PharmacyDrugs.findOne({ pharmacyName });
+    const { pharmacyName } = req.query;
+    const validpharmacyName = decodeURIComponent(pharmacyName);
+
+    const result = await PharmacyDrugs.find({
+        pharmacyName: validpharmacyName,
+    });
     if (!result) {
         throw HttpError(404);
     }
