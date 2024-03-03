@@ -63,6 +63,9 @@ const userOrderJoiSchema = Joi.object({
     orderMedicines: Joi.array()
         .items(
             Joi.object({
+                id: Joi.string().required().messages({
+                    "any.required": "missing required id field",
+                }),
                 drugName: Joi.string().required().messages({
                     "any.required": "missing required drugName field",
                 }),
