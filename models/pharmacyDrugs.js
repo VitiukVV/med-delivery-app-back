@@ -1,3 +1,4 @@
+const Joi = require("joi");
 const { Schema, model } = require("mongoose");
 
 const pharmacyDrugsSchema = new Schema({
@@ -21,4 +22,14 @@ const pharmacyDrugsSchema = new Schema({
 
 const PharmacyDrugs = model("medicine", pharmacyDrugsSchema);
 
-module.exports = PharmacyDrugs;
+const validateShopName = Joi.object({
+    pharmacyName: Joi.string().required().messages({
+        "any.required": "missing field pharmacyName",
+    }),
+});
+
+const schemas = {
+    validateShopName,
+};
+
+module.exports = { PharmacyDrugs, schemas };

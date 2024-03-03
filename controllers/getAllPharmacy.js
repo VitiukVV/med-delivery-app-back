@@ -1,4 +1,3 @@
-// const { Contact } = require("../models/contact");
 const Pharmacy = require("../models/pharmacyNames");
 const { HttpError, ctrlWrapper } = require("../helpers");
 

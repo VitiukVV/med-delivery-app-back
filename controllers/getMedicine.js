@@ -1,9 +1,9 @@
-// const { Contact } = require("../models/contact");
 const { HttpError, ctrlWrapper } = require("../helpers");
-const PharmacyDrugs = require("../models/pharmacyDrugs");
+const { PharmacyDrugs } = require("../models/pharmacyDrugs");
 
-const getAll = async (req, res) => {
-    const result = await PharmacyDrugs.find();
+const getMedicineByPharmacy = async (req, res) => {
+    const { pharmacyName } = req.body;
+    const result = await PharmacyDrugs.findOne({ pharmacyName });
     if (!result) {
         throw HttpError(404);
     }
@@ -11,5 +11,5 @@ const getAll = async (req, res) => {
 };
 
 module.exports = {
-    getAll: ctrlWrapper(getAll),
+    getMedicineByPharmacy: ctrlWrapper(getMedicineByPharmacy),
 };
